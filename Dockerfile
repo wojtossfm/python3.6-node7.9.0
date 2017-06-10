@@ -1,7 +1,7 @@
 From debian:sid
 
 RUN apt-get update && \
-    apt-get install -y python3.6 python3-pip curl git xvfb wget zip tar firefox chromium openssh-client && \
+    apt-get install -y python3.6 python3-pip curl git xvfb wget zip tar firefox chromium openssh-client rsync && \
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash && \
     wget https://chromedriver.storage.googleapis.com/2.30/chromedriver_linux64.zip && \
     wget https://github.com/mozilla/geckodriver/releases/download/v0.17.0/geckodriver-v0.17.0-linux64.tar.gz && \
