@@ -2,8 +2,9 @@ From debian:sid
 
 RUN apt-get update && \
     apt-get install -y python3.6 python3-pip python-virtualenv curl git xvfb wget zip tar firefox chromium \
-        openssh-client rsync postgresql-9.6 && \
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash && \
+        openssh-client rsync postgresql-9.6
+
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash && \
     wget https://chromedriver.storage.googleapis.com/2.30/chromedriver_linux64.zip && \
     wget https://github.com/mozilla/geckodriver/releases/download/v0.17.0/geckodriver-v0.17.0-linux64.tar.gz && \
     unzip chromedriver_linux64.zip && \
@@ -13,8 +14,9 @@ RUN apt-get update && \
     export NVM_DIR="$HOME/.nvm" && \
     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && \
     nvm install 7.9.0 && \
-    nvm use 7.9.0 && \
-    service postgresql start && \
+    nvm use 7.9.0
+
+RUN service postgresql start && \
     su - postgres -c "createuser tester --login" && \
     su - postgres -c "createdb testing --owner tester" && \
     su - postgres -c "psql -c \"ALTER USER tester WITH PASSWORD 'T35t3r'\"" && \
