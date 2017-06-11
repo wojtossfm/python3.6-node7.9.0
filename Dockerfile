@@ -14,6 +14,7 @@ RUN apt-get update && \
     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && \
     nvm install 7.9.0 && \
     nvm use 7.9.0 && \
+    service postgresql start && \
     createuser tester --login && \
     createdb testing --owner tester && \
     su - postgres -c "psql -c \"ALTER USER tester WITH PASSWORD 'T35t3r'\"" && \
