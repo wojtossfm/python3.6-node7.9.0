@@ -19,6 +19,7 @@ RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh
 RUN service postgresql start && \
     su - postgres -c "createuser tester --login" && \
     su - postgres -c "createdb testing --owner tester" && \
+    su - postgres -c "psql --dbname testing -c \"ALTER SCHEMA public OWNER TO tester\"" && \
     su - postgres -c "psql -c \"ALTER USER tester WITH PASSWORD 'T35t3r'\"" && \
     sed -i "/local   all             postgres                                peer/ i local   all             tester                                 md5" /etc/postgresql/9.6/main/pg_hba.conf && \
 	sed -i "/local   all             postgres                                peer/ i host   all             tester               127.0.0.1/32        md5" /etc/postgresql/9.6/main/pg_hba.conf && \
