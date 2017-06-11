@@ -1,7 +1,7 @@
 From debian:sid
 
 RUN apt-get update && \
-    apt-get install -y python3.6 python3-pip python3.6-dev python-virtualenv curl git xvfb wget zip tar firefox chromium \
+    apt-get install -y python3.6 python3-pip python3.6-dev build-essential libssl-dev libffi-dev python-virtualenv curl git xvfb wget zip tar firefox chromium \
         openssh-client rsync postgresql-9.6
 
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash && \
