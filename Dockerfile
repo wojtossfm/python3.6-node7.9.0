@@ -15,8 +15,8 @@ RUN apt-get update && \
     nvm install 7.9.0 && \
     nvm use 7.9.0 && \
     service postgresql start && \
-    createuser tester --login && \
-    createdb testing --owner tester && \
+    su - postgres -c "createuser tester --login" && \
+    su - postgres -c "createdb testing --owner tester" && \
     su - postgres -c "psql -c \"ALTER USER tester WITH PASSWORD 'T35t3r'\"" && \
     sed -i "/local   all             postgres                                peer/ i local   all             tester                                 md5" /etc/postgresql/9.6/main/pg_hba.conf && \
 	sed -i "/local   all             postgres                                peer/ i host   all             tester               127.0.0.1/32        md5" /etc/postgresql/9.6/main/pg_hba.conf && \
