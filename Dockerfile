@@ -1,7 +1,7 @@
 From debian:sid
 
 RUN apt-get update && \
-    apt-get install -y python3.6 python3-pip python-virtualenv curl git xvfb wget zip tar firefox chromium \
+    apt-get install -y python3.6 python3-pip python3.6-dev python-virtualenv curl git xvfb wget zip tar firefox chromium \
         openssh-client rsync postgresql-9.6
 
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash && \
@@ -23,5 +23,3 @@ RUN service postgresql start && \
     sed -i "/local   all             postgres                                peer/ i local   all             tester                                 md5" /etc/postgresql/9.6/main/pg_hba.conf && \
 	sed -i "/local   all             postgres                                peer/ i host   all             tester               127.0.0.1/32        md5" /etc/postgresql/9.6/main/pg_hba.conf && \
 	sed -i "s/#listen_addresses =.*/listen_addresses = \'*\'/" /etc/postgresql/9.6/main/postgresql.conf
-
-RUN apt-get update && apt-get install python3.6-dev
