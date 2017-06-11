@@ -19,4 +19,4 @@ RUN apt-get update && \
     su - postgres -c "psql -c \"ALTER USER tester WITH PASSWORD 'T35t3r'\"" && \
     sed -i "/local   all             postgres                                peer/ i local   all             tester                                 md5" /etc/postgresql/9.6/main/pg_hba.conf && \
 	sed -i "/local   all             postgres                                peer/ i host   all             tester               127.0.0.1/32        md5" /etc/postgresql/9.6/main/pg_hba.conf && \
-	sed -i "s/#listen_addresses =.*/listen_addresses = \'*\'/\" /etc/postgresql/9.6/main/postgresql.conf
+	sed -i "s/#listen_addresses =.*/listen_addresses = \'*\'/" /etc/postgresql/9.6/main/postgresql.conf
